@@ -17,8 +17,8 @@ public class Feedback {
     @Column(columnDefinition = "TEXT")
     private String comments;
 
-    @Column(columnDefinition = "smallint")
-    private int rating;
+    @Column(name = "rating")
+    private short rating;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="interview_id", nullable = false, unique = true)

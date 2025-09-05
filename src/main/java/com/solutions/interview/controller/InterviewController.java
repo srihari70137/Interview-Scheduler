@@ -39,6 +39,7 @@ public class InterviewController {
             @RequestParam(defaultValue = "scheduledAt") String sortBy
     )
     {
+        System.out.println("Searching interviews with name: " + name + ", candidateName: " + candidateName + ", page: " + page + ", size: " + size + ", sortBy: " + sortBy);
         InterviewSearchCriteria interviewSearchCriteria=new InterviewSearchCriteria(name,candidateName);
         Pageable pageable= PageRequest.of(page,size, Sort.by(sortBy).descending());
         Page<InterviewDto> searchResults=interviewService.searchInterviews(interviewSearchCriteria, pageable);

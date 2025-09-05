@@ -13,19 +13,18 @@
             </column>
 
             <column name="interview_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_feedback_interview" references="interview(id)"/>
+                <constraints nullable="false"
+                             foreignKeyName="fk_feedback_interview"
+                             references="interview(id)"/>
             </column>
 
-            <column name="rating" type="VARCHAR(50)"/>
+            <column name="rating" type="smallint"/>
             <column name="comments" type="TEXT"/>
         </createTable>
 
         <!-- Ensure one feedback per interview -->
-        <addUniqueConstraint tableName="feedback" columnNames="interview_id" constraintName="uk_feedback_interview"/>
+        <addUniqueConstraint tableName="feedback"
+                             columnNames="interview_id"
+                             constraintName="uk_feedback_interview"/>
     </changeSet>
-
-    <changeSet id="2" author="hari">
-        <modifyDataType tableName="feedback" columnName="rating" newDataType="smallint"/>
-    </changeSet>
-
 </databaseChangeLog>

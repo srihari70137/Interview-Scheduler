@@ -8,6 +8,6 @@ import lombok.*;
 @Builder
 public class FeedbackRequest {
     @NonNull
-   private int feedbackRating;
+   private short feedbackRating;
    private String comments;
 }
