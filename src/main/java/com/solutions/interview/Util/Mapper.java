@@ -1,9 +1,12 @@
 package com.solutions.interview.Util;
 
 import com.solutions.interview.DTOs.InterviewDto;
+import com.solutions.interview.DTOs.SearchDto;
 import com.solutions.interview.entity.Interview;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+
+import javax.swing.plaf.PanelUI;
 
 @NoArgsConstructor(access=AccessLevel.PRIVATE)
 public class Mapper {
@@ -25,5 +28,8 @@ public class Mapper {
         }
     return dto;
     }
+
+    /*public SearchDto toDto()*/
+
 
 }

@@ -1,9 +1,6 @@
 package com.solutions.interview.service;
 
-import com.solutions.interview.DTOs.CreateInterviewRequest;
-import com.solutions.interview.DTOs.FeedbackRequest;
-import com.solutions.interview.DTOs.InterviewDto;
-import com.solutions.interview.DTOs.InterviewSearchCriteria;
+import com.solutions.interview.DTOs.*;
 import com.solutions.interview.Util.Mapper;
 import com.solutions.interview.entity.Candidate;
 import com.solutions.interview.entity.Feedback;
@@ -23,7 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 import static com.solutions.interview.Util.Mapper.convertToDto;
 
@@ -35,6 +32,25 @@ public class InterviewServiceImpl implements InterviewService{
     InterviewerRepository interviewerRepository;
     InterviewRepository interviewRepository;
 
+    @Override
+    public Interviewer createInterviewerifNotExists(CreateInterviwerRequest createInterviwerRequest) {
+        Interviewer interviewer=new Interviewer();
+       interviewer.setFirstName(createInterviwerRequest.getFirstName());
+       interviewer.setLastName(createInterviwerRequest.getLastName());
+       interviewer.setEmail(createInterviwerRequest.getEmail());
+        return interviewerRepository.save(interviewer);
+    }
+
+    @Override
+    public Candidate createCandidateIfNotExists(CreateCandidateRequest createCandidateRequest) {
+        Candidate candidate = new Candidate();
+        candidate.setFirstName(createCandidateRequest.getFirstName());
+        candidate.setLastName(createCandidateRequest.getLastName());
+        candidate.setEmail(createCandidateRequest.getEmail());
+        candidate.setPhone(createCandidateRequest.getPhone());
+
+        return candidateRepository.save(candidate);
+    }
 
     @Override
     @Transactional
@@ -57,8 +73,8 @@ public class InterviewServiceImpl implements InterviewService{
     @Transactional
     public InterviewDto submitFeedback(Long interviewId, FeedbackRequest feedbackRequest) {
         Interview interview=interviewRepository.findById(interviewId).orElseThrow(()-> new NotFoundException("Interview not found"));
-        if(interview.getStatus()!=com.solutions.interview.enums.InterviewStatus.COMPLETED)
-            throw new IllegalArgumentException("Feedback can only be submitted for completed interviews");
+        /*if(interview.getStatus()!=com.solutions.interview.enums.InterviewStatus.COMPLETED)
+            throw new IllegalArgumentException("Feedback can only be submitted for completed interviews");*/
         if(interview.getFeedback()!=null)
             throw new IllegalArgumentException("Feedback has already been submitted for this interview");
 
@@ -74,13 +90,24 @@ public class InterviewServiceImpl implements InterviewService{
     }
 
     @Override
-    public Page<InterviewDto> searchInterviews(InterviewSearchCriteria criteria, Pageable pageable) {
+    public Page<SearchDto> searchInterviews(InterviewSearchCriteria criteria, Pageable pageable) {
         Specification<Interview> spec = Specification.where(
                 InterviewSpecification.interviewerNameContains(criteria.getInterviewerName())
         ).and(InterviewSpecification.candidateNameContains(criteria.getCandidateName()));
-
         Page<Interview> page = interviewRepository.findAll(spec, pageable);
-        return page.map(Mapper::convertToDto);
+        System.out.println("page details "+page.stream().map(Mapper::convertToDto).toList());
+        return null;
+    }
+
+
+
+    public List<Candidate> getAllCandidates() {
+        return candidateRepository.findAll();
+    }
+
+    @Override
+    public List<Interviewer> getAllInterviewers() {
+        return interviewerRepository.findAll();
     }
 
 }
