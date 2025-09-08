@@ -15,7 +15,9 @@ public class Mapper {
         InterviewDto dto=new InterviewDto();
         dto.setId(interview.getId());
         dto.setCandidateId(interview.getCandidate()!=null?interview.getCandidate().getId():null);
+        dto.setCandidateName(interview.getCandidate().getFirstName()!=null?interview.getCandidate().getFirstName():null);
         dto.setInterviewerId(interview.getInterviewer()!=null?interview.getInterviewer().getId():null);
+        dto.setInterviewerName(interview.getInterviewer()!=null?interview.getInterviewer().getFirstName():null);
         dto.setScheduledAt(interview.getScheduledAt()!=null?interview.getScheduledAt():null);
         dto.setDurationMinutes(interview.getDurationMinutes()!=null?interview.getDurationMinutes():null);
         dto.setStatus(interview.getStatus());
@@ -29,7 +31,13 @@ public class Mapper {
     return dto;
     }
 
-    /*public SearchDto toDto()*/
 
+    public static SearchDto convertToSearchDto(Interview interview){
+        if(interview == null) return null;
+        SearchDto dto=new SearchDto();
+        dto.setCandidateName(interview.getCandidate().getFirstName()!=null?interview.getCandidate().getFirstName():null);
+        dto.setInterviewerName(interview.getInterviewer()!=null?interview.getInterviewer().getFirstName():null);
+        return dto;
+    }
 
 }

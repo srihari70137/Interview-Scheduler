@@ -1,5 +1,6 @@
 package com.solutions.interview.DTOs;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,12 +13,12 @@ import java.time.LocalDateTime;
     @AllArgsConstructor
     @Builder
     public class CreateInterviewRequest {
-        @NotNull
+        @NotNull @NotBlank
         private Long candidateId;
-        @NotNull
+        @NotNull @NotBlank
         private Long interviewerId;
-        @NotNull
+        @NotNull @NotBlank
         private LocalDateTime scheduledAt;
-        @NotNull @Min(15)
+        @NotNull @Min(15) @NotBlank
         private Integer durationMinutes;
 }

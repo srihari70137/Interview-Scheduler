@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class InterviewServiceImpl implements InterviewService{
     FeedbackRepository feedbackRepository;
     InterviewerRepository interviewerRepository;
     InterviewRepository interviewRepository;
+    private final NotificationService notificationService;
 
     @Override
     public Interviewer createInterviewerifNotExists(CreateInterviwerRequest createInterviwerRequest) {
@@ -38,6 +40,7 @@ public class InterviewServiceImpl implements InterviewService{
        interviewer.setFirstName(createInterviwerRequest.getFirstName());
        interviewer.setLastName(createInterviwerRequest.getLastName());
        interviewer.setEmail(createInterviwerRequest.getEmail());
+         interviewer.setExpertise(createInterviwerRequest.getExpertise());
         return interviewerRepository.save(interviewer);
     }
 
@@ -66,8 +69,23 @@ public class InterviewServiceImpl implements InterviewService{
                 .durationMinutes(createInterviewRequest.getDurationMinutes())
                 .status(com.solutions.interview.enums.InterviewStatus.SCHEDULED)
                 .build();
-        return convertToDto(interviewRepository.save(interview));
+        Interview savedInterview=interviewRepository.save(interview);
+       /* notificationService.sendInterviewScheduled(candidate, interviewer, savedInterview);*/
+        return convertToDto(savedInterview);
     }
+
+
+    @Override
+    @Transactional
+    public InterviewDto cancelInterview(Long interviewId) {
+        Interview interview = interviewRepository.findById(interviewId)
+                .orElseThrow(() -> new NotFoundException("Interview not found"));
+        interview.setStatus(InterviewStatus.CANCELLED);
+        Interview savedInterview = interviewRepository.save(interview);
+        /*notificationService.sendInterviewCancelled(interview.getCandidate(), interview.getInterviewer(), savedInterview);
+   */return  convertToDto(savedInterview);
+    }
+
 
     @Override
     @Transactional
@@ -95,8 +113,8 @@ public class InterviewServiceImpl implements InterviewService{
                 InterviewSpecification.interviewerNameContains(criteria.getInterviewerName())
         ).and(InterviewSpecification.candidateNameContains(criteria.getCandidateName()));
         Page<Interview> page = interviewRepository.findAll(spec, pageable);
-        System.out.println("page details "+page.stream().map(Mapper::convertToDto).toList());
-        return null;
+        return page.map(Mapper::convertToSearchDto);
+
     }
 
 

@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchDto {
-    private String interviewer;
-    private String candidate;
+    private String interviewerName;
+    private String candidateName;
 }

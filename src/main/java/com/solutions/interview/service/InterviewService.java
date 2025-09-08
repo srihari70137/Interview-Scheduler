@@ -12,6 +12,7 @@ import java.util.List;
 public interface InterviewService {
 
      InterviewDto scheduleInterview(CreateInterviewRequest createInterviewRequest);
+     public InterviewDto cancelInterview(Long interviewId);
      Page searchInterviews(InterviewSearchCriteria interviewSearchCriteria, Pageable pageable);
      InterviewDto submitFeedback(Long interviewId, FeedbackRequest feedbackRequest);
      Interviewer createInterviewerifNotExists(CreateInterviwerRequest createInterviwerRequest);

@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 public class InterviewDto {
     private Long id;
     private Long candidateId;
+    private String candidateName;
     private Long interviewerId;
+    private String interviewerName;
     private LocalDateTime scheduledAt;
     private Integer durationMinutes;
     private InterviewStatus status;
