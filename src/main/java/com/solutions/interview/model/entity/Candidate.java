@@ -1,4 +1,4 @@
-package com.solutions.interview.entity;
+package com.solutions.interview.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,7 @@ public class Candidate {
     private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String phone;
 }

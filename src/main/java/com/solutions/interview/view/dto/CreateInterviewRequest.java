@@ -1,4 +1,4 @@
-package com.solutions.interview.DTOs;
+package com.solutions.interview.view.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

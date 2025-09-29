@@ -1,6 +1,5 @@
-package com.solutions.interview.entity;
-
-import com.solutions.interview.enums.InterviewStatus;
+package com.solutions.interview.model.entity;
+import com.solutions.interview.model.enums.InterviewStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

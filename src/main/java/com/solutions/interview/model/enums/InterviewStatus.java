@@ -1,4 +1,4 @@
-package com.solutions.interview.enums;
+package com.solutions.interview.model.enums;
 
 public enum InterviewStatus {
     SCHEDULED,

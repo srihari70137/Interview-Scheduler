@@ -1,13 +1,13 @@
-package com.solutions.interview.DTOs;
+package com.solutions.interview.view.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class InterviewSearchCriteria {
+@NoArgsConstructor
+public class SearchDto {
     private String interviewerName;
     private String candidateName;
 }

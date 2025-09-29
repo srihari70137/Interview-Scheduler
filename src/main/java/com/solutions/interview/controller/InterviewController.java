@@ -1,9 +1,9 @@
 package com.solutions.interview.controller;
 
-import com.solutions.interview.DTOs.*;
-import com.solutions.interview.entity.Candidate;
-import com.solutions.interview.entity.Interviewer;
+import com.solutions.interview.model.entity.Candidate;
+import com.solutions.interview.model.entity.Interviewer;
 import com.solutions.interview.service.InterviewService;
+import com.solutions.interview.view.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

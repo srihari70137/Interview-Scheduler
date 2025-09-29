@@ -1,4 +1,4 @@
-package com.solutions.interview.entity;
+package com.solutions.interview.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,6 +10,7 @@ public class Interviewer {
     private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String expertise;
 }

@@ -1,4 +1,4 @@
-package com.solutions.interview.entity;
+package com.solutions.interview.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

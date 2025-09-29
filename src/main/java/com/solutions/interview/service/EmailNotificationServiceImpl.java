@@ -1,9 +1,8 @@
 package com.solutions.interview.service;
 
-import com.solutions.interview.entity.Candidate;
-import com.solutions.interview.entity.Interviewer;
-import com.solutions.interview.entity.Interview;
-import com.solutions.interview.service.NotificationService;
+import com.solutions.interview.model.entity.Candidate;
+import com.solutions.interview.model.entity.Interviewer;
+import com.solutions.interview.model.entity.Interview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

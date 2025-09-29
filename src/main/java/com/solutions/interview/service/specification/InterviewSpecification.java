@@ -1,6 +1,6 @@
-package com.solutions.interview.specification;
+package com.solutions.interview.service.specification;
 
-import com.solutions.interview.entity.Interview;
+import com.solutions.interview.model.entity.Interview;
 import org.springframework.data.jpa.domain.Specification;
 
 import jakarta.persistence.criteria.Join;
@@ -10,6 +10,10 @@ public final class InterviewSpecification {
     private InterviewSpecification() {}
 
     public static Specification<Interview> interviewerNameContains(String name) {
+        //root → represents the Interview entity (the main table in query).
+        //
+        //We join with the interviewer relationship (because Interview has a ManyToOne with Interviewer).
+
         return (root, query, cb) -> {
             if (name == null || name.isBlank()) return null;
             Join<Object, Object> interviewer = root.join("interviewer", JoinType.INNER);

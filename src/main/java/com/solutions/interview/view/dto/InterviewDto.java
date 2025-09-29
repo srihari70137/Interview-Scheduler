@@ -1,6 +1,6 @@
-package com.solutions.interview.DTOs;
+package com.solutions.interview.view.dto;
 
-import com.solutions.interview.enums.InterviewStatus;
+import com.solutions.interview.model.enums.InterviewStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;

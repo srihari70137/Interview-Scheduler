@@ -1,12 +1,10 @@
-package com.solutions.interview.Util;
+package com.solutions.interview.view.Util;
 
-import com.solutions.interview.DTOs.InterviewDto;
-import com.solutions.interview.DTOs.SearchDto;
-import com.solutions.interview.entity.Interview;
+import com.solutions.interview.view.dto.InterviewDto;
+import com.solutions.interview.view.dto.SearchDto;
+import com.solutions.interview.model.entity.Interview;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import javax.swing.plaf.PanelUI;
 
 @NoArgsConstructor(access=AccessLevel.PRIVATE)
 public class Mapper {
